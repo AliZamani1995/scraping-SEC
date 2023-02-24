@@ -1,4 +1,4 @@
-name: ml-env
+name: scraping-env
 channels:
   - conda-forge
   - defaults
