@@ -44,7 +44,7 @@ def write_parquet(df: pd.DataFrame, path: Path, engine: Text = 'pyarrow'):
 
 def parse_arguments(arguments_list: List) -> Namespace:
     """
-    Parse arguments using the ArgumentParser library 
+    Parse arguments using the ArgumentParser library
 
     Parameters
     ----------
@@ -83,7 +83,7 @@ def load_yaml(path: Path) -> any:
     Returns
     -------
     any
-        Returns a 'Munch' Object to interpret the dictionary structure of the .yaml file 
+        Returns a 'Munch' Object to interpret the dictionary structure of the .yaml file
     """
     with open(path, 'r') as stream:
         try:

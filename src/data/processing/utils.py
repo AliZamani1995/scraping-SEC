@@ -21,7 +21,7 @@ def split_train_test(
     ----------
     df : pd.DataFrame
         Dataframe of the total dataset to be split into test / train
-    
+
     test_size : float
         Value between 0-1 representing the percentage of data to use for the testing sample
 

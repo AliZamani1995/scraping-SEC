@@ -14,6 +14,7 @@ class Model():
     """
     A class to describe a model object
     """
+
     def __init__(
         self,
         models: List,
@@ -36,7 +37,7 @@ class Model():
         train_data_df : pd.DataFrame
             Dataframe containing the training data portion of the total data
         target_column : Text
-            Dataframe containing the target data for the models 
+            Dataframe containing the target data for the models
         """
         self.models_name = models
         self.candidate_params = candidate_params
@@ -49,7 +50,7 @@ class Model():
         num_folds: int = 5,
     ) -> None:
         """
-        Selects the best model from all of the models after training, 
+        Selects the best model from all of the models after training,
         evaluating, and comparing the results.
 
         Parameters

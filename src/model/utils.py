@@ -124,7 +124,7 @@ def evaluate_model(
     X_df : pd.DataFrame
         DataFrame of data without the target information
     y_df : pd.DataFrame
-        DataFrame with the target data column 
+        DataFrame with the target data column
     num_folds : int, optional
         The number of folds to use during model evaluation, by default 5
 
@@ -161,7 +161,7 @@ def select_k_feature(
     data_df : pd.DataFrame
         DataFrame of the total dataset
     ranked_features_list : List
-        List of the top ranked features 
+        List of the top ranked features
     num_feature : int
         Number of features to select in the dataset
 
