@@ -208,7 +208,11 @@ _Below is an example of how you can instruct your audience on installing and set
    ```make
    conda activate ml-env
    ```
-
+4. Create package
+   ```make
+   make create-package
+   ```
+   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
