@@ -19,3 +19,5 @@ dependencies:
       - munch==2.5.0
       - flask==2.2.2
       - dtale==2.11.0
+      - beautifulsoup4==4.11.2
+      - xmltodict==0.13.0
