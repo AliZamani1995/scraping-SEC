@@ -11,8 +11,6 @@
   <h3 align="center">Scraping SEC for inside trading information</h3>
 
   <p align="center">
-    SEC Form 4 is used by officers, directors, and other corporate “insiders” to notify the U.S. Securities and Exchange Commission (SEC) of their personal transactions in their company's securities.  For this exercise, please write a small scraper to extract information from Form 4 on SEC site.
-
     <br />
     <a href="https://github.com/zamaniali1995/scraping-SEC"><strong>Explore the docs »</strong></a>
     <br />
