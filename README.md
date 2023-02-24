@@ -8,15 +8,15 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
 
-  <h3 align="center">Machine Learning Pipeline Template</h3>
+  <h3 align="center">Scraping SEC for inside trading information</h3>
 
   <p align="center">
-    A useful template to enable simple and efficient machine learning projects
+    SEC Form 4 is used by officers, directors, and other corporate “insiders” to notify the U.S. Securities and Exchange Commission (SEC) of their personal transactions in their company's securities.  For this exercise, please write a small scraper to extract information from Form 4 on SEC site.
+
     <br />
-    <a href="https://github.com/zamaniali1995/ml-pipeline"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/zamaniali1995/scraping-SEC"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://zamaniali1995.pythonanywhere.com/">View Demo</a>
     ·
     <a href="https://github.com/zamaniali1995/ml-pipeline/issues">Report Bug</a>
     ·
@@ -63,14 +63,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://zamaniali1995.pythonanywhere.com/)
-
-
-While developing our machine learning pipeline template, we wanted to create an efficient and purposeful environment that could resolve many of the annoyances and issues we have faced in the past.
-
-Our goal with this ML pipeline template is to create a user friendly utility to drastically speed up the development and implementation of a machine learning model for all sorts of various problems. Many of our past experiences with other templates or machine learning projects had left us hoping for a better working environment and a more efficient process. 
-
-This template enables fast experimentation, easy execution, and simple debugging for all components. 
+SEC Form 4 is used by officers, directors, and other corporate “insiders” to notify the U.S. Securities and
+Exchange Commission (SEC) of their personal transactions in their company&#39;s securities. For this
+exercise, please write a small scraper to extract information from Form 4 on SEC site.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -98,13 +93,13 @@ The *app* component of the directory controls the front end flask service which 
 ### **config/**
    ```sh
   .
-  ├── config.yaml           # Main global configuration file 
-  ├── data_acquisition      
-  │   └── config.yaml       # Data acquisition configuration 
+  ├── config.yaml           # Main global configuration file
+  ├── data_acquisition
+  │   └── config.yaml       # Data acquisition configuration
   ├── data_processing
   │   └── config.yaml       # Data processing configuration
   ├── model_training
-  │   └── config.yaml       # Model training configuration 
+  │   └── config.yaml       # Model training configuration
   └── model_validation
       └── config.yaml       # Model validation configuration
    ```
@@ -116,7 +111,7 @@ The *config* component of the directory is where the most controls reside for th
 * **Model Training**
 * **Model Validation**
 
-There is also an additional configuration file for general settings that relate to each of these different sections and are shared. 
+There is also an additional configuration file for general settings that relate to each of these different sections and are shared.
 
 The configuration files are intended to be the primary point of access and control for this pipeline. Any changes or utility additions should be controlled from their corresponding configuration file in order to keep an organized and properly modularized codebase.
 
@@ -144,10 +139,10 @@ The *pipeline_components* folder in the directory is the host to the main files 
 ### **src/**
    ```sh
 .
-├── __init__.py   
+├── __init__.py
 ├── data
 │   ├── __init__.py
-│   ├── acquisition     
+│   ├── acquisition
 │   │   ├── __init__.py
 │   │   └── utils.py    # Data acquisition utility functions
 │   ├── processing
@@ -162,7 +157,7 @@ The *pipeline_components* folder in the directory is the host to the main files 
 └── utils.py            # Main general utility functions
    ```
 
-The *src* component of the directory is the core of our pipelines functionality. This directory stores the utility functions for each of the pipeline steps. When running the pipeline, these utility functions will be built as a package and can be imported and used in the main functions during runtime. 
+The *src* component of the directory is the core of our pipelines functionality. This directory stores the utility functions for each of the pipeline steps. When running the pipeline, these utility functions will be built as a package and can be imported and used in the main functions during runtime.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -224,7 +219,7 @@ Here we will describe how to use this ML pipeline template, as well as how to ru
 
 This pipeline was designed so that configuration files are the primary means of controlling and altering the pipeline. These configuration files control the paths to the data, what kind of data processing to perform, how to split the training and testing data, which models to train, the range of potential hyper parameters to search through, which evaluation methods to use on the models, and many other similar selections.
 
-These configuration files allow for changes to be made in one place, not requiring someone to dig through code and alter each place where some variable could exist. 
+These configuration files allow for changes to be made in one place, not requiring someone to dig through code and alter each place where some variable could exist.
 
 If there is a desire to implement some additional processing method or some specific functionality for a given dataset, we have created a simple process to add utility functions that can be used and connected with the configuration files easily.
 
@@ -360,7 +355,7 @@ Project Link: [https://github.com/zamaniali1995/ml-pipeline](https://github.com/
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[JQuery-url]: https://jquery.com
 
 
 <!-- # Tasks
@@ -377,4 +372,3 @@ Project Link: [https://github.com/zamaniali1995/ml-pipeline](https://github.com/
 - [x] Complete front-end -> Ali
 - [x] Complete docstring -> Jacob
 - [ ] Complete Read.ME -> Jacob -->
-
