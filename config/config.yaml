@@ -15,10 +15,8 @@ path:
 
 log_msg:
   # Data acquisition logs
-  acquire_data_start_msg: '-> Start - Acquiring Data <-'
-  acquire_data_end_msg: '-> End - Acquiring Data <-'
-  load_dataset_start_msg: 'Start - Loading the dataset'
-  load_dataset_end_msg: 'End - Loading the dataset'
+  load_dataset_start_msg: 'Start - Scraping data'
+  load_dataset_end_msg: 'End - Loading Scraping data'
   save_dataset_start_msg: 'Start - Saving the dataset'
   save_dataset_end_msg: 'End - Saving the dataset'
   # Data processing logs
