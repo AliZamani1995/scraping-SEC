@@ -5,7 +5,7 @@ target_column: target
 
 path:
   raw_data_path: 'data/raw_data/dataset.parquet'
-  train_data_path: 'data/processed_data/train.parquet'
+  clean_data_path: 'data/processed_data/dataset.parquet'
   test_data_path: 'data/processed_data/test.parquet'
   feature_score_path: 'data/features/ranked_features.parquet'
   trained_model_path: 'data/model/trained_model.pickle'

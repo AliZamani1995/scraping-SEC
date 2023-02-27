@@ -7,7 +7,7 @@ import pandas as pd
 import requests
 import xmltodict
 from bs4 import BeautifulSoup
-
+from src.utils import Log
 
 def load_data(
     cik_dict: Dict,
@@ -39,7 +39,8 @@ def load_data(
     """
     final_data_df = pd.DataFrame()
 
-    for cik in cik_dict.values():
+    for cik_name, cik in cik_dict.items():
+        Log.info(msg='cik: '+str(cik_name))
         folder_url_list = get_urls(
             url=base_url+extend_url+str(cik),
             headers=headers
@@ -50,6 +51,7 @@ def load_data(
                 headers=headers
             )
             index_file_url = find_index_file(url_list=file_url_list)
+            
             xml_url = get_form_4_url(
                 url=base_url+index_file_url,
                 headers=headers
@@ -57,7 +59,8 @@ def load_data(
             if xml_url != None:
                 data_df = parse_xml_url(
                     url=base_url+xml_url,
-                    headers=headers
+                    headers=headers,
+                    cik_name=cik_name
                 )
                 final_data_df = pd.concat(
                     [data_df, final_data_df],
@@ -159,13 +162,13 @@ def get_form_4_url(url: Text, headers: Dict) -> Text:
     )
     for row in table_rows_list:
         col_list = row.find_all('td')
-        if 'FORM 4' in col_list[1].text and col_list[2].text.split('.')[-1] == 'xml':
+        if ('FORM 4' in col_list[1].text or 'form4' in col_list[2].text) and col_list[2].text.split('.')[-1] == 'xml':
             xml_url = col_list[2].find('a').get('href')
             return xml_url
     return None
 
 
-def parse_xml_url(url: Text, headers: Text) -> pd.DataFrame:
+def parse_xml_url(url: Text, headers: Text, cik_name: Text) -> pd.DataFrame:
     """Parses an xml page.
 
     Parameters
@@ -175,6 +178,9 @@ def parse_xml_url(url: Text, headers: Text) -> pd.DataFrame:
 
     headers: Dict
         The header for sending request to the website
+
+    cik_name: Text
+        The name of the company
 
     Returns
     -------
@@ -187,15 +193,17 @@ def parse_xml_url(url: Text, headers: Text) -> pd.DataFrame:
     )
     data = xmltodict.parse(xml_page.content)
     derivative_data_df = extract_data(
-        data=data, derivative_type='derivativeTable')
+        data=data, derivative_type='derivativeTable', cik_name=cik_name)
     non_derivative_data_df = extract_data(
-        data=data, derivative_type='nonDerivativeTable')
+        data=data, derivative_type='nonDerivativeTable', cik_name=cik_name)
     data_df = pd.concat(
-        [derivative_data_df, non_derivative_data_df], ignore_index=True)
+        [derivative_data_df, non_derivative_data_df],
+        ignore_index=True
+        )
     return data_df
 
 
-def extract_data(data: Dict, derivative_type: Text):
+def extract_data(data: Dict, derivative_type: Text, cik_name: Text):
     """Extracts important values from data.
 
     Parameters
@@ -227,7 +235,8 @@ def extract_data(data: Dict, derivative_type: Text):
             derivatives_data = [derivatives_data]
 
         for derivative_data in derivatives_data:
-            if derivative_data['securityTitle']['value'] == 'Common Stock':
+            if 'Common Stock' in derivative_data['securityTitle']['value'] and\
+            data['ownershipDocument']['issuer']['issuerTradingSymbol']==cik_name:
                 try:
                     price = derivative_data['transactionAmounts']['transactionPricePerShare']['value']
                 except:

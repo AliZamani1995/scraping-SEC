@@ -6,6 +6,8 @@ from typing import List
 
 import pandas as pd
 from sklearn import datasets
+import numpy as np
+from scipy import stats
 
 from src.data.processing.utils import rank_features, split_train_test
 from src.utils import (Log, load_parquet, load_yaml, parse_arguments,
@@ -24,35 +26,18 @@ def main(arguments_list: List = None):
     data_df = load_parquet(path=main_config.path.raw_data_path)
     Log.info(main_config.log_msg.load_dataset_end_msg)
 
-    Log.info(main_config.log_msg.split_train_test_start_msg)
-    train_df, test_df = split_train_test(
-        df=data_df,
-        test_size=config.test_siz,
-        random_state=main_config.random_state
-    )
-    Log.info(main_config.log_msg.split_train_test_end_msg)
+    data_df = data_df.dropna()
+    data_df = data_df[data_df['transactionPricePerShare'].astype(float) != 0]
+    # data_df = data_df[(np.abs(stats.zscore(data_df['transactionPricePerShare'].astype(float))) < data_df['transactionPricePerShare'].astype(float).quantile(0.1))]
+    # print(data_df['transactionPricePerShare'].astype(float).describe())
+    # data_df = data_df[data_df['transactionPricePerShare'].astype(int) != 0.00]
 
     Log.info(main_config.log_msg.save_data_as_parquet_start_msg)
     write_parquet(
-        df=train_df,
-        path=main_config.path.train_data_path
-    )
-    write_parquet(
-        df=test_df,
-        path=main_config.path.test_data_path
+        df=data_df,
+        path=main_config.path.clean_data_path
     )
     Log.info(main_config.log_msg.save_data_as_parquet_end_msg)
-
-    Log.info(main_config.log_msg.rank_feature_start_msg)
-    ranked_features_df = rank_features(
-        df=train_df,
-        target_column=main_config.target_column,
-    )
-    write_parquet(
-        df=ranked_features_df,
-        path=main_config.path.feature_score_path
-    )
-    Log.info(main_config.log_msg.rank_feature_end_msg)
 
     Log.info(main_config.log_msg.process_data_end_msg)
 
