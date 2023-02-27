@@ -4,10 +4,10 @@ It should clean the data and split it to train and test.
 """
 from typing import List
 
-import pandas as pd
-from sklearn import datasets
 import numpy as np
+import pandas as pd
 from scipy import stats
+from sklearn import datasets
 
 from src.data.processing.utils import rank_features, split_train_test
 from src.utils import (Log, load_parquet, load_yaml, parse_arguments,

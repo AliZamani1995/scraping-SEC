@@ -7,7 +7,9 @@ import pandas as pd
 import requests
 import xmltodict
 from bs4 import BeautifulSoup
+
 from src.utils import Log
+
 
 def load_data(
     cik_dict: Dict,
@@ -51,7 +53,7 @@ def load_data(
                 headers=headers
             )
             index_file_url = find_index_file(url_list=file_url_list)
-            
+
             xml_url = get_form_4_url(
                 url=base_url+index_file_url,
                 headers=headers
@@ -199,7 +201,7 @@ def parse_xml_url(url: Text, headers: Text, cik_name: Text) -> pd.DataFrame:
     data_df = pd.concat(
         [derivative_data_df, non_derivative_data_df],
         ignore_index=True
-        )
+    )
     return data_df
 
 
@@ -236,7 +238,7 @@ def extract_data(data: Dict, derivative_type: Text, cik_name: Text):
 
         for derivative_data in derivatives_data:
             if 'Common Stock' in derivative_data['securityTitle']['value'] and\
-            data['ownershipDocument']['issuer']['issuerTradingSymbol']==cik_name:
+                    data['ownershipDocument']['issuer']['issuerTradingSymbol'] == cik_name:
                 try:
                     price = derivative_data['transactionAmounts']['transactionPricePerShare']['value']
                 except:
